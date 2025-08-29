@@ -20,9 +20,13 @@ jobs:
    steps:
     - name: envandsecrets
     - env: 
-       name: "chiku"
-       run: echo "$name"
-      with:
-       password: ${{secrets.MY_NAME}}
+       NAME: "chiku"
+       PASSWORD: ${{secrets.MY_NAME}}
+       run: |
+         echo "name is$name"
+         echo "PASSWORD IS $PASSWORD
+       
+      
+       
   
  
