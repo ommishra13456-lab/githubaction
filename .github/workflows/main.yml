@@ -15,5 +15,14 @@ jobs:
   steps:
   - name: printhello
     run: echo "hello world"
+ secondjob:
+   runs-on: ubuntu-latest
+   steps:
+    - name: envandsecrets
+    - env: 
+       name: "chiku"
+       run: echo "$name"
+      with:
+       password: ${{secrets.MY_NAME}}
   
  
