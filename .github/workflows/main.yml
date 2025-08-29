@@ -14,7 +14,7 @@ jobs:
  firstjob:
   runs-on: ubuntu-latest
     steps:
-   - name: printhello
-      run: echo "hello world"
+     - name: printhello
+        run: echo "hello world"
   
  
