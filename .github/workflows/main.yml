@@ -1,30 +1,58 @@
-name : actionpr
+name: actionpr
+
 on:
- push: 
-  branches:
-   - main
- pull_request:
-  branches:
-   - main
- workflow_dispatch:
- schedule:
-  - cron: "0 0 * * *"
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+  schedule:
+    - cron: "0 0 * * *"
+
 jobs:
- firstjob:
-  runs-on: ubuntu-latest
-  steps:
-  - name: printhello
-    run: echo "hello world"
- secondjob:
-   runs-on: ubuntu-latest
-   steps:
-    - name: envandsecrets
-    - env: 
-       NAME: "chiku"
-       PASSWORD: ${{secrets.MY_NAME}}
-       run: |
-         echo "name is$name"
-         echo "PASSWORD IS $PASSWORD
+  firstjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: printhello 
+        run: echo "hello world"
+
+  secondjob:
+    runs-on: ubuntu-latest
+    steps:
+      - name: envandsecrets
+        env: 
+          NAME: "chiku"
+          PASSWORD: ${{ secrets.MY_NAME }}
+        run: |
+          echo "name is $NAME"
+          echo "PASSWORD IS $PASSWORD"
+
+  thirdjob:      
+    runs-on: ubuntu-latest
+    steps:
+      - name: createfile
+        run: echo "upload it" > first.txt
+
+      - name: upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: uploadit
+          path: first.txt
+
+  fourthjob:
+    runs-on: ubuntu-latest
+    needs: thirdjob   
+    steps:
+      - name: download artifact
+        uses: actions/download-artifact@v4
+        with: 
+          name: uploadit
+
+      - name: display file
+        run: cat first.txt
+
        
       
        
