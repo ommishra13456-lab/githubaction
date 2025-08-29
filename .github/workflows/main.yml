@@ -9,12 +9,11 @@ on:
  workflow_dispatch:
  schedule:
   - cron: "0 0 * * *"
-
 jobs:
  firstjob:
-  runs-on: ubuntu-latest
+ runs-on: ubuntu-latest
     steps:
      - name: printhello
-        run: echo "hello world"
+       run: echo "hello world"
   
  
