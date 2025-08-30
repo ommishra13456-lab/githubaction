@@ -27,7 +27,7 @@ jobs:
           PASSWORD: ${{ secrets.MY_NAME }}
         run: |
           echo "name is $NAME"
-          echo "PASSWORD IS $PASSWORD"
+          echo "password is $PASSWORD"
 
   thirdjob:      
     runs-on: ubuntu-latest
