@@ -52,19 +52,22 @@ jobs:
 
       - name: display file
         run: cat first.txt
+        
   fifthjob:
-   runs-on: ubuntu-latest
-   outputs: 
-    mymessage: ${{steps.steps1.outputs.message}}
-   steps:
-    - id: steps1
-      run: echo "hello from chiku" >>$GHITHUB_OUTPUT
+    runs-on: ubuntu-latest
+    outputs: 
+      mymessage: ${{ steps.steps1.outputs.message }}
+    steps:
+      - id: steps1
+        run: echo "message=hello from chiku" >> $GITHUB_OUTPUT
+
   sixthjob:
-   runs-on: ubuntu-lates
-   needs: fifthjob
-   steps:
-    - name: useoutput
-      run: echo " job recive:${{needs.fifthjob.outputs.message}}"
+    runs-on: ubuntu-latest
+    needs: fifthjob
+    steps:
+      - name: useoutput
+        run: echo "job received: ${{ needs.fifthjob.outputs.mymessage }}"
+
        
       
        
